@@ -11,4 +11,6 @@ Bottom sheet contains toggles for turning individual routes on/off
 
 ### Data
 Data hosted on my github pages site in raw json files
-JSON files will contain GPS data in [GeoJSON format](https://geojson.org/)
+JSON files will contain GPS data in [GeoJSON format](https://geojson.org/). 
+Google Maps SDK for Android [supports](https://developers.google.com/maps/documentation/android-sdk/utility/geojson) loading GeoJSON directly
+
