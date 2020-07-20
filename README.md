@@ -12,5 +12,9 @@ Bottom sheet contains toggles for turning individual routes on/off
 ### Data
 Data hosted on my github pages site in raw json files
 JSON files will contain GPS data in [GeoJSON format](https://geojson.org/). 
+
+### Other Resources
+There are a few GeoJSON kotlin libraries available, here's a one that has semi-active development https://github.com/chris-hatton/geojson-kotlin 
+
 Google Maps SDK for Android [supports](https://developers.google.com/maps/documentation/android-sdk/utility/geojson) loading GeoJSON directly
 
