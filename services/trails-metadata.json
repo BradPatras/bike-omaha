@@ -1,0 +1,34 @@
+{
+	"trails": [
+		{
+			"title": "West Papio Trail",
+			"identifier": 1,
+			"filename": "west-papio.json"
+		},
+		{
+			"title": "Keystone Trail",
+			"identifier": 2,
+			"filename": "keystone.json"
+		},
+		{
+			"title": "Big Papio Trail",
+			"identifier": 3,
+			"filename": "big-papio.json"
+		},
+		{
+			"title": "Field Club Trail",
+			"identifier": 4,
+			"filename": "field-club.json"
+		},
+		{
+			"title": "Leavenworth Bike Lane (eastbound)",
+			"identifier": 5,
+			"filename": "leavenworth-east.json"
+		},
+		{
+			"title": "Riverfront Trail",
+			"identifier": 6,
+			"filename": "riverfront.json"
+		}
+	]
+}
