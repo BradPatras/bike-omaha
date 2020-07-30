@@ -27,13 +27,13 @@ This raw json file will contain all the trails, each in a json object. A trail o
 
 ```json
 {
-	"trails": [
-		{
-			"title": "West Papio Trail", // String
-			"identifier": 1, // Int
-			"featureCollection": {}, // GeoJSON 'FeatureCollection' object (massive)
-		},
-	]
+    "trails": [
+        {
+            "title": "West Papio Trail", // String
+            "identifier": 1, // Int
+            "featureCollection": {}, // GeoJSON 'FeatureCollection' object (massive)
+        },
+    ]
 }
 ```
 
@@ -43,18 +43,18 @@ I'm playing with different ideas for generating the trails.json file with a scri
 Here's what the metadata file looks like
 ```json
 {
-	"trails": [
-		{
-			"title": "West Papio Trail",
-			"identifier": 1,
-			"filename": "west-papio.json"
-		},
-		{
-			"title": "Keystore Trail",
-			"identifier": 2,
-			"filename": "keystone.json"
-		}
-	]
+    "trails": [
+        {
+            "title": "West Papio Trail",
+            "identifier": 1,
+            "filename": "west-papio.json"
+        },
+        {
+            "title": "Keystore Trail",
+            "identifier": 2,
+            "filename": "keystone.json"
+        }
+    ]
 }
 ```
 
