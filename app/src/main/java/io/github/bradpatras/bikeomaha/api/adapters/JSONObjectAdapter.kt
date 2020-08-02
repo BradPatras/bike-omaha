@@ -1,4 +1,4 @@
-package io.github.bradpatras.bikeomaha.api
+package io.github.bradpatras.bikeomaha.api.adapters
 
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.JsonReader

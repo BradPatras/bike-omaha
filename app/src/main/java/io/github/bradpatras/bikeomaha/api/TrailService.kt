@@ -1,6 +1,7 @@
 package io.github.bradpatras.bikeomaha.api
 
 import com.squareup.moshi.Moshi
+import io.github.bradpatras.bikeomaha.api.adapters.JSONObjectAdapter
 import io.github.bradpatras.bikeomaha.data.Trail
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -9,11 +10,11 @@ import retrofit2.http.GET
 
 interface TrailService {
 
-    @GET("bike-omaha/trails.json")
+    @GET("trails.json")
     fun trails(): Call<List<Trail>>
 
     companion object {
-        private const val BASE_URL = "https://bradpatras.github.io/bike-omaha/"
+        private const val BASE_URL = "https://bradpatras.github.io/bike-omaha/v1/"
 
         fun create(): TrailService {
             val moshi = Moshi.Builder()
