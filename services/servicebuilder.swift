@@ -6,6 +6,13 @@ let ktitle = "title"
 let kIdentifier = "identifier"
 let kFilename = "filename"
 let kGeoJSON = "geoJSON"
+let kLastUpdated = "lastUpdated"
+
+let rfc3339DateFormatter = DateFormatter()
+rfc3339DateFormatter.locale = Locale(identifier: "en_US_POSIX")
+rfc3339DateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+rfc3339DateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+let timestamp = rfc3339DateFormatter.string(from: Date())
 
 let pwd = "file://" + FileManager.default.currentDirectoryPath
 
@@ -65,8 +72,10 @@ guard !output.isEmpty else {
     exit(0)
 }
 
+// Create the final form of the output dictionary
+let finalOutputDict: [String: Any] = [kLastUpdated: timestamp, kTrails: output]
+
 // write the output dictionary to a json encoded file
-let finalOutputDict: [String: Any] = [kTrails: output]
 guard let jsonData = try? JSONSerialization.data(withJSONObject: finalOutputDict) else {
     print("Failed to serialize output json")
     exit(0)
