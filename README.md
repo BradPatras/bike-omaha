@@ -31,7 +31,7 @@ This raw json file will contain all the trails, each in a json object. A trail o
         {
             "title": "West Papio Trail", // String
             "identifier": 1, // Int
-            "featureCollection": {}, // GeoJSON 'FeatureCollection' object (massive)
+            "geoJSON": {}, // GeoJSON 'FeatureCollection' object (massive)
         },
     ]
 }

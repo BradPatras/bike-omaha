@@ -5,7 +5,7 @@ let kTrails = "trails"
 let ktitle = "title"
 let kIdentifier = "identifier"
 let kFilename = "filename"
-let kFeatureCollection = "featureCollection"
+let kGeoJSON = "geoJSON"
 
 let pwd = "file://" + FileManager.default.currentDirectoryPath
 
@@ -56,7 +56,7 @@ for trailMetadata in trailsJson {
     
     var trailOutput = trailMetadata
     trailOutput.removeValue(forKey: kFilename)
-    trailOutput[kFeatureCollection] = sourceDict
+    trailOutput[kGeoJSON] = sourceDict
     output.append(trailOutput)
 }
 
