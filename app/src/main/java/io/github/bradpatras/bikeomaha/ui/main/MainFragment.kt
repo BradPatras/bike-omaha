@@ -1,8 +1,10 @@
 package io.github.bradpatras.bikeomaha.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -34,7 +36,9 @@ class MainFragment : Fragment(R.layout.main_fragment), OnMapReadyCallback {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+        viewModel.trails.observe(viewLifecycleOwner, Observer {
+            Log.i("test", "${it.count()}")
+        })
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
