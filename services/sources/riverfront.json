@@ -3000,12 +3000,6 @@
             },
             "properties": {
                 "name": "Riverfront Trail",
-                "styleUrl": "#line-B2EBF2-5000-nodesc",
-                "styleHash": "-2f8c4427",
-                "styleMapHash": {
-                    "normal": "#line-B2EBF2-5000-nodesc-normal",
-                    "highlight": "#line-B2EBF2-5000-nodesc-highlight"
-                },
                 "stroke": "#b2ebf2",
                 "stroke-opacity": 1,
                 "stroke-width": 5

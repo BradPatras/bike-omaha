@@ -425,15 +425,9 @@
             },
             "properties": {
                 "name": "West Papio Trail (North Section)",
-                "styleUrl": "#line-9C27B0-4875-nodesc",
-                "styleHash": "-770fafa7",
-                "styleMapHash": {
-                    "normal": "#line-9C27B0-4875-nodesc-normal",
-                    "highlight": "#line-9C27B0-4875-nodesc-highlight"
-                },
                 "stroke": "#9c27b0",
                 "stroke-opacity": 1,
-                "stroke-width": 4.875
+                "stroke-width": 5
             }
         },
         {
@@ -595,15 +589,9 @@
             },
             "properties": {
                 "name": "West Papio Trail North Connection",
-                "styleUrl": "#line-9C27B0-1969-nodesc",
-                "styleHash": "6fce181f",
-                "styleMapHash": {
-                    "normal": "#line-9C27B0-1969-nodesc-normal",
-                    "highlight": "#line-9C27B0-1969-nodesc-highlight"
-                },
                 "stroke": "#9c27b0",
                 "stroke-opacity": 1,
-                "stroke-width": 1.969
+                "stroke-width": 2
             }
         },
         {
@@ -4265,12 +4253,6 @@
             },
             "properties": {
                 "name": "West Papio Trail (Main Section)",
-                "styleUrl": "#line-9C27B0-5000-nodesc",
-                "styleHash": "121f0b99",
-                "styleMapHash": {
-                    "normal": "#line-9C27B0-5000-nodesc-normal",
-                    "highlight": "#line-9C27B0-5000-nodesc-highlight"
-                },
                 "stroke": "#9c27b0",
                 "stroke-opacity": 1,
                 "stroke-width": 5
@@ -4370,15 +4352,9 @@
             },
             "properties": {
                 "name": "West Papio Trail South Connection",
-                "styleUrl": "#line-9C27B0-1775-nodesc",
-                "styleHash": "282d83f",
-                "styleMapHash": {
-                    "normal": "#line-9C27B0-1775-nodesc-normal",
-                    "highlight": "#line-9C27B0-1775-nodesc-highlight"
-                },
                 "stroke": "#9c27b0",
                 "stroke-opacity": 1,
-                "stroke-width": 1.775
+                "stroke-width": 2
             }
         },
         {
@@ -6520,15 +6496,9 @@
             },
             "properties": {
                 "name": "West Papio Trail (South Section)",
-                "styleUrl": "#line-9C27B0-4681-nodesc",
-                "styleHash": "1ba51079",
-                "styleMapHash": {
-                    "normal": "#line-9C27B0-4681-nodesc-normal",
-                    "highlight": "#line-9C27B0-4681-nodesc-highlight"
-                },
                 "stroke": "#9c27b0",
                 "stroke-opacity": 1,
-                "stroke-width": 4.681
+                "stroke-width": 5
             }
         }
     ]

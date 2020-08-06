@@ -3625,12 +3625,6 @@
             },
             "properties": {
                 "name": "Big Papio Trail",
-                "styleUrl": "#line-0F9D58-5000-nodesc",
-                "styleHash": "5f987e79",
-                "styleMapHash": {
-                    "normal": "#line-0F9D58-5000-nodesc-normal",
-                    "highlight": "#line-0F9D58-5000-nodesc-highlight"
-                },
                 "stroke": "#0f9d58",
                 "stroke-opacity": 1,
                 "stroke-width": 5

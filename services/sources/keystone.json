@@ -3470,12 +3470,6 @@
             },
             "properties": {
                 "name": "Keystone Trail",
-                "styleUrl": "#line-1267FF-5000-nodesc",
-                "styleHash": "4b899179",
-                "styleMapHash": {
-                    "normal": "#line-1267FF-5000-nodesc-normal",
-                    "highlight": "#line-1267FF-5000-nodesc-highlight"
-                },
                 "stroke": "#1267ff",
                 "stroke-opacity": 1,
                 "stroke-width": 5

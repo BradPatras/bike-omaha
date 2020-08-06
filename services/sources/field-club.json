@@ -2385,12 +2385,6 @@
             },
             "properties": {
                 "name": "Field Club Trail",
-                "styleUrl": "#line-F57C00-5000-nodesc",
-                "styleHash": "-3ea40aa7",
-                "styleMapHash": {
-                    "normal": "#line-F57C00-5000-nodesc-normal",
-                    "highlight": "#line-F57C00-5000-nodesc-highlight"
-                },
                 "stroke": "#f57c00",
                 "stroke-opacity": 1,
                 "stroke-width": 5

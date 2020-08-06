@@ -110,15 +110,9 @@
             },
             "properties": {
                 "name": "Leavenworth Bike Lane - eastbound",
-                "styleUrl": "#line-FF5252-4681-nodesc",
-                "styleHash": "cb77c59",
-                "styleMapHash": {
-                    "normal": "#line-FF5252-4681-nodesc-normal",
-                    "highlight": "#line-FF5252-4681-nodesc-highlight"
-                },
                 "stroke": "#ff5252",
                 "stroke-opacity": 1,
-                "stroke-width": 4.681
+                "stroke-width": 5
             }
         }
     ]
