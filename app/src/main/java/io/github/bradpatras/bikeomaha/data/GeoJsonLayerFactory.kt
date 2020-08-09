@@ -24,19 +24,17 @@ import org.json.JSONObject
  * will then be added to that feature.
  */
 class GeoJsonLayerFactory(
-    val map: GoogleMap
+    private val map: GoogleMap
 ) {
     private val polylineManager = PolylineManager(map)
     private val groundOverlayManager = GroundOverlayManager(map)
     private val polygonManager = PolygonManager(map)
     private val markerManager = MarkerManager(map)
 
-    @Suppress("UNCHECKED_CAST")
     fun create(geoJsonRootObject: JSONObject): GeoJsonLayer {
         val layer = GeoJsonLayer(map, geoJsonRootObject, markerManager, polygonManager, polylineManager, groundOverlayManager)
         for (feature in layer.features) {
-            val properties = GeoJsonTrailFeaturePropertiesFactory.create(feature) ?: continue
-
+            val properties = GeoJsonTrailFeaturePropertiesFactory.create(feature)
             val lineStringStyle = GeoJsonLineStringStyle()
             lineStringStyle.color = ColorUtilsExt.colorWithAlpha(properties.strokeColor, properties.strokeOpacity)
             lineStringStyle.width = properties.strokeWidth

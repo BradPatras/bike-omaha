@@ -9,16 +9,37 @@ class GeoJsonTrailFeaturePropertiesFactory {
         private const val kStrokeWidth = "stroke-width"
         private const val kName = "name"
 
-        fun create(feature: GeoJsonFeature): GeoJsonTrailFeatureProperties? {
-            if (!feature.hasProperty(kStroke)) return null
-            if (!feature.hasProperty(kStrokeOpacity)) return null
-            if (!feature.hasProperty(kStrokeWidth)) return null
-            if (!feature.hasProperty(kName)) return null
+        private val default = GeoJsonTrailFeatureProperties(
+            strokeColor = "#00000",
+            strokeWidth = 5f,
+            strokeOpacity = 1f,
+            name = "Untitled Trail"
+        )
 
-            val strokeColor = feature.getProperty(kStroke)
-            val strokeOpacity = feature.getProperty(kStrokeOpacity).toFloatOrNull() ?: return null
-            val strokeWidth = feature.getProperty(kStrokeWidth).toFloatOrNull() ?: return null
-            val name = feature.getProperty(kName)
+        fun create(feature: GeoJsonFeature): GeoJsonTrailFeatureProperties {
+            val strokeColor: String = if (feature.hasProperty(kStroke)) {
+                feature.getProperty(kStroke)
+            } else {
+                default.strokeColor
+            }
+
+            val strokeOpacity: Float = if (feature.hasProperty(kStrokeOpacity)) {
+                feature.getProperty(kStrokeOpacity).toFloatOrNull() ?: default.strokeOpacity
+            } else {
+                default.strokeOpacity
+            }
+
+            val strokeWidth: Float = if (feature.hasProperty(kStrokeWidth)) {
+                feature.getProperty(kStrokeWidth).toFloatOrNull() ?: default.strokeWidth
+            } else {
+                default.strokeWidth
+            }
+
+            val name: String = if (feature.hasProperty(kName)) {
+                feature.getProperty(kName)
+            } else {
+                default.name
+            }
 
             return GeoJsonTrailFeatureProperties(strokeColor, strokeWidth, strokeOpacity, name)
         }
