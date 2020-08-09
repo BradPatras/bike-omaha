@@ -59,3 +59,6 @@ Here's what the metadata file looks like
 ```
 
 The combination is done in a swift script in the servicebuilder.swift file.  To generate the output file on a mac you need to have swift installed and located in `/usr/bin/` and then in terminal, run `./servicebuilder.swift` from the `sources/` directory
+
+## Dev Notes
+- GeoJsonFeature 'properties' json object contain styling to be used when laying out the feature on the map (stroke width, stroke color). Currently these properties are required by the app to be present and they are not documented anywhere and were originally created by the kml exporter on the google MyMaps GUI.  I don't want to be locked in to using the MyMaps GUI in the future for creating new trails so I should figure out a way of adding the properties to the features some other way. Possibly as part of the `servicebuilder.swift` script.  At the very least I need to add some validation to the servicebuilder script to ensure that the features all contain a valid properties object.
