@@ -1,19 +1,17 @@
 package io.github.bradpatras.bikeomaha.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import io.github.bradpatras.bikeomaha.R
+import io.github.bradpatras.bikeomaha.data.GeoJsonLayerFactory
 import kotlinx.android.synthetic.main.main_fragment.*
-import org.json.JSONObject
 
 class MainFragment : Fragment(R.layout.main_fragment), OnMapReadyCallback {
 
@@ -22,7 +20,8 @@ class MainFragment : Fragment(R.layout.main_fragment), OnMapReadyCallback {
     }
 
     private var map: GoogleMap? = null
-    private lateinit var viewModel: MainViewModel
+
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,18 +34,21 @@ class MainFragment : Fragment(R.layout.main_fragment), OnMapReadyCallback {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.trails.observe(viewLifecycleOwner, Observer {
-            Log.i("test", "${it.count()}")
+
+        viewModel.trails.observe(viewLifecycleOwner, Observer { trails ->
+            map?.let { googleMap ->
+                trails.map { it.geoJSON }.forEach {
+                    GeoJsonLayerFactory(googleMap).create(it).addLayerToMap()
+                }
+            }
         })
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val omaha = LatLng(41.259698, -96.022224)
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(omaha, 9.5f))
+
     }
 
     override fun onResume() {
