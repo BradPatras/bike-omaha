@@ -592,7 +592,7 @@
                 "stroke": "#9c27b0",
                 "stroke-opacity": 1,
                 "stroke-width": 8,
-                "pattern": "dotted"
+                "pattern": "DOTTED"
             }
         },
         {
@@ -4356,7 +4356,7 @@
                 "stroke": "#9c27b0",
                 "stroke-opacity": 1,
                 "stroke-width": 8,
-                "pattern": "dotted"
+                "pattern": "DOTTED"
             }
         },
         {
