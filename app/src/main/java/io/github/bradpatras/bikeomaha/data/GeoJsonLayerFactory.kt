@@ -4,6 +4,10 @@ import android.graphics.Color
 import androidx.core.graphics.ColorUtils
 import androidx.core.graphics.alpha
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.Dash
+import com.google.android.gms.maps.model.Dot
+import com.google.android.gms.maps.model.Gap
+import com.google.android.gms.maps.model.PatternItem
 import com.google.maps.android.collections.GroundOverlayManager
 import com.google.maps.android.collections.MarkerManager
 import com.google.maps.android.collections.PolygonManager
@@ -37,7 +41,8 @@ class GeoJsonLayerFactory(
             val properties = GeoJsonTrailFeaturePropertiesFactory.create(feature)
             val lineStringStyle = GeoJsonLineStringStyle()
             lineStringStyle.color = ColorUtilsExt.colorWithAlpha(properties.strokeColor, properties.strokeOpacity)
-            lineStringStyle.width = 10f //properties.strokeWidth
+            lineStringStyle.width = properties.strokeWidth
+            lineStringStyle.pattern = PatternItemFactory.patternFromLinePatternStyle(properties.patternStyle)
             feature.lineStringStyle = lineStringStyle
         }
 

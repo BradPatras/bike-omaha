@@ -8,12 +8,14 @@ class GeoJsonTrailFeaturePropertiesFactory {
         private const val kStrokeOpacity = "stroke-opacity"
         private const val kStrokeWidth = "stroke-width"
         private const val kName = "name"
+        private const val kPatternStyle = "pattern"
 
         private val default = GeoJsonTrailFeatureProperties(
             strokeColor = "#00000",
             strokeWidth = 5f,
             strokeOpacity = 1f,
-            name = "Untitled Trail"
+            name = "Untitled Trail",
+            patternStyle = LinePatternStyle.SOLID
         )
 
         fun create(feature: GeoJsonFeature): GeoJsonTrailFeatureProperties {
@@ -41,7 +43,13 @@ class GeoJsonTrailFeaturePropertiesFactory {
                 default.name
             }
 
-            return GeoJsonTrailFeatureProperties(strokeColor, strokeWidth, strokeOpacity, name)
+            val patternStyle: LinePatternStyle = if (feature.hasProperty(kPatternStyle)) {
+                LinePatternStyle.valueOf(feature.getProperty(kPatternStyle))
+            } else {
+                default.patternStyle
+            }
+
+            return GeoJsonTrailFeatureProperties(strokeColor, strokeWidth, strokeOpacity, name, patternStyle)
         }
     }
 }

@@ -427,7 +427,7 @@
                 "name": "West Papio Trail (North Section)",
                 "stroke": "#9c27b0",
                 "stroke-opacity": 1,
-                "stroke-width": 8
+                "stroke-width": 10
             }
         },
         {
@@ -591,7 +591,8 @@
                 "name": "West Papio Trail North Connection",
                 "stroke": "#9c27b0",
                 "stroke-opacity": 1,
-                "stroke-width": 4
+                "stroke-width": 8,
+                "pattern": "dotted"
             }
         },
         {
@@ -4255,7 +4256,7 @@
                 "name": "West Papio Trail (Main Section)",
                 "stroke": "#9c27b0",
                 "stroke-opacity": 1,
-                "stroke-width": 8
+                "stroke-width": 10
             }
         },
         {
@@ -4354,7 +4355,8 @@
                 "name": "West Papio Trail South Connection",
                 "stroke": "#9c27b0",
                 "stroke-opacity": 1,
-                "stroke-width": 4
+                "stroke-width": 8,
+                "pattern": "dotted"
             }
         },
         {
@@ -6498,7 +6500,7 @@
                 "name": "West Papio Trail (South Section)",
                 "stroke": "#9c27b0",
                 "stroke-opacity": 1,
-                "stroke-width": 8
+                "stroke-width": 10
             }
         }
     ]

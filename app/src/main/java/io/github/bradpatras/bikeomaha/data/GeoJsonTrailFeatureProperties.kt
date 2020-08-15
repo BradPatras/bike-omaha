@@ -4,5 +4,6 @@ data class GeoJsonTrailFeatureProperties(
        val strokeColor: String,
        val strokeWidth: Float,
        val strokeOpacity: Float,
-       val name: String
+       val name: String,
+       val patternStyle: LinePatternStyle
 )
