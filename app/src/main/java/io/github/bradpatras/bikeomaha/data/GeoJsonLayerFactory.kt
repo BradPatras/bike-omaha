@@ -37,7 +37,7 @@ class GeoJsonLayerFactory(
             val properties = GeoJsonTrailFeaturePropertiesFactory.create(feature)
             val lineStringStyle = GeoJsonLineStringStyle()
             lineStringStyle.color = ColorUtilsExt.colorWithAlpha(properties.strokeColor, properties.strokeOpacity)
-            lineStringStyle.width = properties.strokeWidth
+            lineStringStyle.width = 10f //properties.strokeWidth
             feature.lineStringStyle = lineStringStyle
         }
 
