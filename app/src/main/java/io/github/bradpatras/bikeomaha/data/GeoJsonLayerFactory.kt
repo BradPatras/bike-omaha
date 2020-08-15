@@ -1,20 +1,13 @@
 package io.github.bradpatras.bikeomaha.data
 
-import android.graphics.Color
-import androidx.core.graphics.ColorUtils
-import androidx.core.graphics.alpha
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.model.Dash
-import com.google.android.gms.maps.model.Dot
-import com.google.android.gms.maps.model.Gap
-import com.google.android.gms.maps.model.PatternItem
 import com.google.maps.android.collections.GroundOverlayManager
 import com.google.maps.android.collections.MarkerManager
 import com.google.maps.android.collections.PolygonManager
 import com.google.maps.android.collections.PolylineManager
+import com.google.maps.android.data.geojson.GeoJsonFeature
 import com.google.maps.android.data.geojson.GeoJsonLayer
-import com.google.maps.android.data.geojson.GeoJsonLineStringStyle
-import io.github.bradpatras.bikeomaha.util.ColorUtilsExt
+import io.github.bradpatras.bikeomaha.util.applyPropertyStyles
 import org.json.JSONObject
 
 /**
@@ -36,16 +29,15 @@ class GeoJsonLayerFactory(
     private val markerManager = MarkerManager(map)
 
     fun create(geoJsonRootObject: JSONObject): GeoJsonLayer {
-        val layer = GeoJsonLayer(map, geoJsonRootObject, markerManager, polygonManager, polylineManager, groundOverlayManager)
-        for (feature in layer.features) {
-            val properties = GeoJsonTrailFeaturePropertiesFactory.create(feature)
-            val lineStringStyle = GeoJsonLineStringStyle()
-            lineStringStyle.color = ColorUtilsExt.colorWithAlpha(properties.strokeColor, properties.strokeOpacity)
-            lineStringStyle.width = properties.strokeWidth
-            lineStringStyle.pattern = PatternItemFactory.patternFromLinePatternStyle(properties.patternStyle)
-            feature.lineStringStyle = lineStringStyle
+        return GeoJsonLayer(
+            map,
+            geoJsonRootObject,
+            markerManager,
+            polygonManager,
+            polylineManager,
+            groundOverlayManager
+        ).apply {
+            features.forEach(GeoJsonFeature::applyPropertyStyles)
         }
-
-        return layer
     }
 }

@@ -7,10 +7,10 @@ import io.github.bradpatras.bikeomaha.data.LinePatternStyle.*
 
 class PatternItemFactory {
     companion object {
-        fun patternFromLinePatternStyle(style: LinePatternStyle): List<PatternItem> {
+        fun patternFromLinePatternStyle(style: LinePatternStyle): List<PatternItem>? {
             return when (style) {
                 DOTTED -> listOf(Dot(), Gap(4f))
-                SOLID -> listOf()
+                SOLID -> null
             }
         }
     }
