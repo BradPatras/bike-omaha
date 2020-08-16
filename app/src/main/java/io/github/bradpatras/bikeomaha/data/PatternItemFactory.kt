@@ -9,7 +9,7 @@ class PatternItemFactory {
     companion object {
         fun patternFromLinePatternStyle(style: LinePatternStyle): List<PatternItem>? {
             return when (style) {
-                DOTTED -> listOf(Dot(), Gap(4f))
+                DOTTED -> listOf(Dot(), Gap(2f))
                 SOLID -> null
             }
         }

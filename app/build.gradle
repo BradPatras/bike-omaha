@@ -15,6 +15,10 @@ android {
         jvmTarget = "1.8"
     }
 
+    buildFeatures {
+        viewBinding true
+    }
+
     defaultConfig {
         applicationId "io.github.bradpatras.bikeomaha"
         minSdkVersion 26
@@ -58,6 +62,9 @@ dependencies {
     implementation 'com.squareup.moshi:moshi:1.9.3'
     implementation 'com.squareup.moshi:moshi-adapters:1.9.3'
     implementation 'com.squareup.moshi:moshi-kotlin:1.9.3'
+
+    implementation 'com.karumi:dexter:6.2.1'
+
     testImplementation 'junit:junit:4.13'
     testImplementation("com.squareup.okhttp3:mockwebserver:4.8.0")
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
