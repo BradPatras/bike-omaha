@@ -29,6 +29,11 @@
 			"title": "Riverfront Trail",
 			"identifier": 6,
 			"filename": "riverfront.json"
+		},
+		{
+			"title": "Big Papio - West Papio North Connection",
+			"identifier": 7,
+			"filename": "papio-connection-north.json"
 		}
 	]
 }
