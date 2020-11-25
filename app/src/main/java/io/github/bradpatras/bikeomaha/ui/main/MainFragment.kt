@@ -22,6 +22,7 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import io.github.bradpatras.bikeomaha.data.GeoJsonLayerFactory
 import io.github.bradpatras.bikeomaha.databinding.MainFragmentBinding
+import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment() {
 
@@ -49,7 +50,7 @@ class MainFragment : Fragment() {
             setupMap()
         }
 
-         checkLocationPermission()
+        checkLocationPermission()
     }
 
     private fun checkLocationPermission() {

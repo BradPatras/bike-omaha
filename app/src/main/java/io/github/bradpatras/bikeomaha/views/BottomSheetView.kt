@@ -9,9 +9,14 @@ import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import io.github.bradpatras.bikeomaha.R
+import kotlinx.android.synthetic.main.bottom_sheet_view.view.*
 
 class BottomSheetView : ConstraintLayout {
+    val bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout> by lazy {
+        BottomSheetBehavior.from(this.sheet_view)
+    }
 
     constructor(context: Context) : super(context) {
         init(null, 0)
