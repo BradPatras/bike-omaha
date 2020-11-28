@@ -48,9 +48,8 @@ class MainFragment : Fragment() {
 
         lifecycle.coroutineScope.launchWhenCreated {
             setupMap()
+            checkLocationPermission()
         }
-
-        checkLocationPermission()
     }
 
     private fun checkLocationPermission() {
