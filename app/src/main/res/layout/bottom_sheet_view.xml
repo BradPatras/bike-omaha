@@ -12,6 +12,8 @@
         android:id="@+id/sheet_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="12dp"
+        android:clipToPadding="false"
         android:background="@drawable/bottom_sheet_background"
         app:behavior_peekHeight="64dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
@@ -27,11 +29,19 @@
             android:id="@+id/drag_handle_view"
             android:layout_width="32dp"
             android:layout_height="6dp"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="2dp"
             android:background="@drawable/drag_handle"
             app:layout_constraintLeft_toLeftOf="@id/center_horizontal"
             app:layout_constraintRight_toRightOf="@id/center_horizontal"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/trail_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="64dp"
+            android:clipToPadding="false"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

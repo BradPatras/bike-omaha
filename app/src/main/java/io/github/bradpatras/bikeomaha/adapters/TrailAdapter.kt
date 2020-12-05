@@ -1,15 +1,19 @@
 package io.github.bradpatras.bikeomaha.adapters
 
+import android.graphics.BlendMode
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import io.github.bradpatras.bikeomaha.data.Trail
+import io.github.bradpatras.bikeomaha.data.getColor
 import io.github.bradpatras.bikeomaha.databinding.ListItemTrailBinding
 
 class TrailAdapter : ListAdapter<Trail, TrailAdapter.TrailViewHolder>(TrailDiffCallback()) {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrailViewHolder {
         return TrailViewHolder(ListItemTrailBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
@@ -22,7 +26,7 @@ class TrailAdapter : ListAdapter<Trail, TrailAdapter.TrailViewHolder>(TrailDiffC
     class TrailViewHolder(private val binding: ListItemTrailBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(trailItem: Trail) {
             binding.titleTv.text = trailItem.title
-            binding.colorView.setBackgroundColor(Color.CYAN)
+            binding.colorView.background.setColorFilter(trailItem.getColor(), PorterDuff.Mode.SRC_ATOP)
         }
     }
 }

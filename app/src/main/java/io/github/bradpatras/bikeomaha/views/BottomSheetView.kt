@@ -7,15 +7,20 @@ import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.text.TextPaint
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import io.github.bradpatras.bikeomaha.R
+import io.github.bradpatras.bikeomaha.databinding.BottomSheetViewBinding
 import kotlinx.android.synthetic.main.bottom_sheet_view.view.*
 
-class BottomSheetView : ConstraintLayout {
+class BottomSheetView : CoordinatorLayout {
+    lateinit var binding: BottomSheetViewBinding
+
     val bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout> by lazy {
-        BottomSheetBehavior.from(this.sheet_view)
+        BottomSheetBehavior.from(binding.sheetView)
     }
 
     constructor(context: Context) : super(context) {
@@ -31,6 +36,7 @@ class BottomSheetView : ConstraintLayout {
     }
 
     private fun init(attrs: AttributeSet?, defStyle: Int) {
-        inflate(context, R.layout.bottom_sheet_view, this)
+        //binding = BottomSheetViewBinding.inflate(LayoutInflater.from(context), this, true)
+        binding = BottomSheetViewBinding.bind(inflate(context, R.layout.bottom_sheet_view, this))
     }
 }

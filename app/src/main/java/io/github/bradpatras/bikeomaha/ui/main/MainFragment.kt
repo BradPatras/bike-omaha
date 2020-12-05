@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.coroutineScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
@@ -20,6 +21,7 @@ import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
+import io.github.bradpatras.bikeomaha.adapters.TrailAdapter
 import io.github.bradpatras.bikeomaha.data.GeoJsonLayerFactory
 import io.github.bradpatras.bikeomaha.databinding.MainFragmentBinding
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -33,7 +35,7 @@ class MainFragment : Fragment() {
     // This is how the android docs show using view binding in fragments....
     private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding!!
-
+    private val adapter: TrailAdapter = TrailAdapter()
     private val viewModel: MainViewModel by viewModels()
     private var googleMap: GoogleMap? = null
 
@@ -48,6 +50,7 @@ class MainFragment : Fragment() {
 
         lifecycle.coroutineScope.launchWhenCreated {
             setupMap()
+            setupBottomSheet()
             checkLocationPermission()
         }
     }
@@ -73,6 +76,17 @@ class MainFragment : Fragment() {
 
             override fun onPermissionDenied(response: PermissionDeniedResponse?) { }
         }
+    }
+
+    private suspend fun setupBottomSheet() {
+        binding.bottomSheet.binding.trailList.adapter = adapter
+        binding.bottomSheet.binding.trailList.layoutManager = LinearLayoutManager(context)
+        viewModel.trails.observe(viewLifecycleOwner, Observer { trails ->
+            adapter.submitList(trails)
+//            (binding.bottomSheet.binding.trailList.adapter as? TrailAdapter)?.apply {
+//                submitList(trails)
+//            }
+        })
     }
 
     private suspend fun setupMap() {
