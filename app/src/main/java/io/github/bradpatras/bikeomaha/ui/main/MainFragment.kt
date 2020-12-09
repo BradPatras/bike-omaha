@@ -78,14 +78,11 @@ class MainFragment : Fragment() {
         }
     }
 
-    private suspend fun setupBottomSheet() {
+    private fun setupBottomSheet() {
         binding.bottomSheet.binding.trailList.adapter = adapter
         binding.bottomSheet.binding.trailList.layoutManager = LinearLayoutManager(context)
         viewModel.trails.observe(viewLifecycleOwner, Observer { trails ->
             adapter.submitList(trails)
-//            (binding.bottomSheet.binding.trailList.adapter as? TrailAdapter)?.apply {
-//                submitList(trails)
-//            }
         })
     }
 
