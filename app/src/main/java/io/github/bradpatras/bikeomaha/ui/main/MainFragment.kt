@@ -24,7 +24,6 @@ import com.karumi.dexter.listener.single.PermissionListener
 import io.github.bradpatras.bikeomaha.adapters.TrailAdapter
 import io.github.bradpatras.bikeomaha.data.GeoJsonLayerFactory
 import io.github.bradpatras.bikeomaha.databinding.MainFragmentBinding
-import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment() {
 
@@ -81,8 +80,13 @@ class MainFragment : Fragment() {
     private fun setupBottomSheet() {
         binding.bottomSheet.binding.trailList.adapter = adapter
         binding.bottomSheet.binding.trailList.layoutManager = LinearLayoutManager(context)
-        viewModel.trails.observe(viewLifecycleOwner, Observer { trails ->
+        viewModel.trails.observe(viewLifecycleOwner, { trails ->
             adapter.submitList(trails)
+        })
+
+        adapter.itemCheckedLiveData.observe(viewLifecycleOwner, { itemId ->
+            viewModel.trailsRepository.toggleTrailSelected(itemId)
+            adapter.notifyDataSetChanged()
         })
     }
 

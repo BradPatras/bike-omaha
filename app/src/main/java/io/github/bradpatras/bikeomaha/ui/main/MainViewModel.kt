@@ -8,9 +8,9 @@ import io.github.bradpatras.bikeomaha.data.TrailsRepository
 import kotlinx.coroutines.Dispatchers
 
 class MainViewModel : ViewModel() {
-    private val repository = TrailsRepository()
+    val trailsRepository = TrailsRepository()
 
     val trails: LiveData<List<Trail>> = liveData(Dispatchers.IO) {
-        emit(repository.getTrails())
+        emit(trailsRepository.getTrails())
     }
 }

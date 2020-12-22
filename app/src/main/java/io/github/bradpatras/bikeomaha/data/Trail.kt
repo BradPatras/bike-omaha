@@ -8,7 +8,8 @@ data class Trail(
     val identifier: Long,
     val title: String,
     val geoJSON: JSONObject,
-    val pathColor: Int = geoJSON.getPathColor()
+    val pathColor: Int = geoJSON.getPathColor(),
+    var selected: Boolean = true
 )
 
 // Currently the layout properties of the routes are buried deep in the

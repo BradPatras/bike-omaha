@@ -1,17 +1,5 @@
 package io.github.bradpatras.bikeomaha
 
-import io.github.bradpatras.bikeomaha.api.TrailsService
-import io.github.bradpatras.bikeomaha.data.TrailsResponse
-import okhttp3.internal.wait
-import okhttp3.mockwebserver.MockResponse
-import okhttp3.mockwebserver.MockWebServer
-import org.junit.Assert.assertNotNull
-import org.junit.Assert.fail
-import org.junit.Test
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-
 class TrailsServiceTest {
 //  This test not working, always gets a timeout from the mockwebserver
 //    @Test
