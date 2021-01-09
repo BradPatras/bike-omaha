@@ -1,6 +1,6 @@
 # servicebuilder
 
-The servicebuilder is a command like tool written in swift that facilitates building the static json files that will be served to the app.
+The servicebuilder is a command line tool written in swift that facilitates building the static json files that will be served to the app.
 
 ### Links and stuff
 
