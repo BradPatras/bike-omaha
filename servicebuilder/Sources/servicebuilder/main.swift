@@ -1,54 +1,57 @@
 import Foundation
 import ArgumentParser
 
-print("Hello, world!")
+private class Keys {
+    static let trails = "trails"
+    static let title = "identifier"
+    static let filename = "filename"
+    static let geoJSON = "geoJSON"
+    static let lastUpdated = "lastUpdated"
+}
 
 struct ServiceBuilder: ParsableCommand {
-    @Argument() var sourcesDir: String
-    @Argument() var outputDir: String
+    @Argument(help: "The relative file path to the trail metadata json file.  Must include filename")
+    var metadataPath: String
     
-    func run() {
-        let kTrails = "trails"
-        let ktitle = "title"
-        let kIdentifier = "identifier"
-        let kFilename = "filename"
-        let kGeoJSON = "geoJSON"
-        let kLastUpdated = "lastUpdated"
-
+    @Argument(help: "The relative path to the directory containing the individual trail files")
+    var sourcesDirectory: String
+    
+    @Argument(help: "The relative path to the file where the output json will be written to.  Must include filename")
+    var outputPath: String
+    
+    private func getTimestamp() -> String {
         let rfc3339DateFormatter = DateFormatter()
         rfc3339DateFormatter.locale = Locale(identifier: "en_US_POSIX")
         rfc3339DateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         rfc3339DateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        let timestamp = rfc3339DateFormatter.string(from: Date())
-
+        return rfc3339DateFormatter.string(from: Date())
+    }
+    
+    func run() {
         let pwd = "file://" + FileManager.default.currentDirectoryPath
-
-        // json files must be located in a subdirectory
-        // of the script's home directory called 'sources'
-        let sourcesDir = "\(pwd)/sources/"
-
-        let outputDir = "\(pwd)/output/"
-        guard let outputDirURL = URL(string: outputDir), let outputPath = URL(string: "\(outputDir)trails.json") else {
+        
+        let outputDir = "\(pwd)/\(outputPath)/"
+        guard let outputURL = URL(string: outputDir) else {
             print("failed to create output URL")
-            exit(0)
+            return
         }
+        
+        let sourcesDir = "\(pwd)/\(sourcesDirectory)"
 
-        // trails-metadata.json must be located in the
-        // script's home directory
-        guard let metadataPath = URL(string: "\(pwd)/trails-metadata.json") else {
+        guard let metadataPath = URL(string: "\(pwd)/\(metadataPath)") else {
             print("trails-metadata.json must be located in the same directory as this script")
-            exit(0)
+            return
         }
 
         guard let metadataFileData = try? Data(contentsOf: metadataPath),
             let metadataDict = try? JSONSerialization.jsonObject(with: metadataFileData, options: .allowFragments) as? [String: Any] else {
                 print("Failed to decode the \(metadataPath) file into a dictionary")
-                exit(0)
+            return
         }
 
-        guard let trailsJson = metadataDict[kTrails] as? [[String: Any]] else {
+        guard let trailsJson = metadataDict[Keys.trails] as? [[String: Any]] else {
             print("Failed to parse trails array from trails-metadata.json")
-            exit(0)
+            return
         }
 
         // for each trail metadata object, grab the source file and insert
@@ -56,7 +59,7 @@ struct ServiceBuilder: ParsableCommand {
         var output: [[String: Any]] = []
 
         for trailMetadata in trailsJson {
-            guard let sourceFilename = trailMetadata[kFilename] as? String,
+            guard let sourceFilename = trailMetadata[Keys.filename] as? String,
                 let sourceURL = URL(string: sourcesDir + sourceFilename) else {
                     print("Failed to parse filename for \(trailMetadata)")
                     continue
@@ -69,34 +72,35 @@ struct ServiceBuilder: ParsableCommand {
             }
             
             var trailOutput = trailMetadata
-            trailOutput.removeValue(forKey: kFilename)
-            trailOutput[kGeoJSON] = sourceDict
+            trailOutput.removeValue(forKey: Keys.filename)
+            trailOutput[Keys.geoJSON] = sourceDict
             output.append(trailOutput)
         }
 
         guard !output.isEmpty else {
             print("Failed to create any trail objects")
-            exit(0)
+            return
         }
 
         // Create the final form of the output dictionary
-        let finalOutputDict: [String: Any] = [kLastUpdated: timestamp, kTrails: output]
+        let finalOutputDict: [String: Any] = [Keys.lastUpdated: getTimestamp(), Keys.trails: output]
 
         // write the output dictionary to a json encoded file
         guard let jsonData = try? JSONSerialization.data(withJSONObject: finalOutputDict) else {
             print("Failed to serialize output json")
-            exit(0)
+            return
         }
 
         let jsonString = String(data: jsonData, encoding: .utf8)
         do {
-            try FileManager.default.createDirectory(at: outputDirURL, withIntermediateDirectories: true)
-            try jsonString?.write(to: outputPath, atomically: true, encoding: .utf8)
+            try jsonString?.write(to: outputURL, atomically: true, encoding: .utf8)
         } catch {
             print(error)
-            exit(0)
+            return
         }
 
-        print("Output written successfully to \(outputPath.absoluteString)")
+        print("Output written successfully to \(outputURL.absoluteString)")
     }
 }
+
+ServiceBuilder.main()
