@@ -23,7 +23,7 @@ Google Maps SDK for Android [supports](https://developers.google.com/maps/docume
 ### bradpatras.github.io/bike-omaha/v1/trails.json
  **This is the file that the app consumes**.
 
-This raw json file will contain all the trails, each in a json object. A trail object will has three values, a title, an identifier, and a GeoJSON feature collection json object.
+This raw json file will contain all the trails, each in a json object. A trail object will have three values, a title, an identifier, and a GeoJSON feature collection json object.
 
 ```jsx
 {
