@@ -23,8 +23,8 @@ extension ServiceBuilder {
         @Argument(help: "The relative path to the directory containing the individual trail files")
         var sourcesDirectory: String
         
-        @Argument(help: "The relative path to the file where the output json will be written to.  Must include filename")
-        var outputPath: String
+        @Option(help: "The relative path to the file where the output json will be written to.  Must include filename")
+        var outputPath: String = "output.json"
         
         private func getTimestamp() -> String {
             let rfc3339DateFormatter = DateFormatter()

@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "servicebuilder",
+    name: "service-builder",
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", .upToNextMinor(from: "0.3.0")),
         // Dependencies declare other packages that this package depends on.
@@ -14,12 +14,12 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
-            name: "servicebuilder",
+            name: "service-builder",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
             ]),
         .testTarget(
-            name: "servicebuilderTests",
-            dependencies: ["servicebuilder"]),
+            name: "service-builderTests",
+            dependencies: ["service-builder"]),
     ]
 )
