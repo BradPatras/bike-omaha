@@ -19,7 +19,7 @@ Swift argument-parser auto generates help pages, so you can always run `swift ru
 
 ### Links and stuff
 
-[following this tutorial for getting the basics set up](https://medium.com/quick-code/lets-build-a-command-line-app-in-swift-328ce274f1cc)
+[following this tutorial for getting the basics set up](https://www.avanderlee.com/swift/command-line-tool-package-manager/)
 and also utilizing swift's [argument-parser](https://swift.org/blog/argument-parser/) library
 
 
