@@ -3,9 +3,7 @@ package io.github.bradpatras.bikeomaha.ui.main
 import android.Manifest
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -21,36 +19,32 @@ import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
+import io.github.bradpatras.bikeomaha.R
 import io.github.bradpatras.bikeomaha.adapters.TrailAdapter
 import io.github.bradpatras.bikeomaha.data.GeoJsonLayerFactory
 import io.github.bradpatras.bikeomaha.databinding.MainFragmentBinding
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(R.layout.main_fragment) {
 
     companion object {
         fun newInstance() = MainFragment()
     }
 
-    // This is how the android docs show using view binding in fragments....
-    private var _binding: MainFragmentBinding? = null
-    private val binding get() = _binding!!
-    private val adapter: TrailAdapter = TrailAdapter()
+    private lateinit var binding: MainFragmentBinding
     private val viewModel: MainViewModel by viewModels()
     private var googleMap: GoogleMap? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = MainFragmentBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = MainFragmentBinding.bind(view)
+
         binding.mapView.onCreate(savedInstanceState)
 
         lifecycle.coroutineScope.launchWhenCreated {
             setupMap()
             setupBottomSheet()
             checkLocationPermission()
+            setupLoadingIndicator()
         }
     }
 
@@ -77,17 +71,21 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun setupBottomSheet() {
-        binding.bottomSheet.binding.trailList.adapter = adapter
-        binding.bottomSheet.binding.trailList.layoutManager = LinearLayoutManager(context)
-        viewModel.trails.observe(viewLifecycleOwner, { trails ->
-            adapter.submitList(trails)
-        })
+    private fun setupLoadingIndicator() {
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            //
+        }
+    }
 
-        adapter.itemCheckedLiveData.observe(viewLifecycleOwner, { itemId ->
+    private fun setupBottomSheet() {
+        viewModel.trails.observe(viewLifecycleOwner) { trails ->
+            binding.bottomSheet.listAdapter?.submitList(trails)
+        }
+
+        binding.bottomSheet.listAdapter?.itemCheckedLiveData?.observe(viewLifecycleOwner) { itemId ->
             viewModel.trailsRepository.toggleTrailSelected(itemId)
-            adapter.notifyDataSetChanged()
-        })
+            binding.bottomSheet.listAdapter?.notifyDataSetChanged()
+        }
     }
 
     private suspend fun setupMap() {
@@ -107,6 +105,11 @@ class MainFragment : Fragment() {
         })
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+    }
+
     override fun onResume() {
         super.onResume()
         binding.mapView.onResume()
@@ -114,7 +117,6 @@ class MainFragment : Fragment() {
 
     override fun onDestroyView() {
         binding.mapView.onDestroy()
-        _binding = null
         super.onDestroyView()
     }
 
